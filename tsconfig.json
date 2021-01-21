@@ -1,0 +1,65 @@
+{
+  /*
+    一个*代表任意文件，**代表任意目录
+  */
+  //包含
+  "include": [
+    "./src/**/*",
+  ],
+  //不包含
+  "exclude": [],
+
+
+  /*
+    compilerOptions:编译器选项
+  */
+  "compilerOptions": {
+    "target": "ES6",
+
+    //指定模块化规范
+    "module": "es6",
+
+    // 指定用到的库文件，一般不改
+    // "lib": []
+
+    //输出文件目录
+    "outDir": "./dist",
+
+    //合并为一个文件,用了模块化就合并不上了,用 "module": "system",可以
+    // "outFile": "./dist/app.js"
+
+    //是否允许对js文件进行编译
+    "allowJs": false,
+
+    //是否检查js代码语法是否符合规范
+    "checkJs": false,
+
+    // 是否移除注释
+    "removeComments": false,
+
+    //是否生成编译后的文件
+    "noEmit": false,
+
+    //产生错误是否进行编译
+    "noEmitOnError": true,
+
+
+    /*
+      strict语法相关
+    */
+    //用来设置编译后的文件是否使用严格模式，如果有模块化导入导出自动就进入严格模式了
+    "alwaysStrict": false,
+
+    //是否不允许隐式any类型
+    "noImplicitAny": false,
+
+    //是否允许不明确类型的this
+    "noImplicitThis": false,
+
+    // 是否严格检查空值 可以使用  if(xxx!null) or xxx?
+    "strictNullChecks": false,
+
+    // 所有严格检查的总开关
+    "strict": false
+  }
+}
