@@ -14,8 +14,10 @@ module.exports = {
     path: resolve("dist"),
     filename: "bundle.js",
     environment: {
-      // 兼容IE取消webpack中箭头函数——可选
+      // 兼容IE11取消webpack中箭头函数——可选
       arrowFunction: false,
+      // 兼容IE10取消webpack中const——可选
+      const: false,
     },
   },
 
