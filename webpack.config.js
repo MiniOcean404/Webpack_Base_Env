@@ -1,4 +1,5 @@
 const path = require("path");
+const resolve = (dir) => path.join(__dirname, dir);
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
@@ -6,23 +7,27 @@ module.exports = {
   mode: "development",
 
   entry: {
-    entry: "./src/js/index.ts",
+    entry: resolve("src/js/index.ts"),
   },
   //出口文件的配置项
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: resolve("dist"),
     filename: "bundle.js",
   },
 
   resolve: {
     extensions: [".ts", ".js", "scss", "css"],
+    alias: {
+      "@": resolve("src"),
+      "@css": resolve("src/css"),
+    },
   },
 
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       //指定要用到的模板文件
-      template: "./src/index.html",
+      template: resolve("src/index.html"),
       filename: "index.html",
     }),
   ],
@@ -37,6 +42,13 @@ module.exports = {
           { loader: "css-loader" },
           { loader: "postcss-loader" },
           { loader: "sass-loader" },
+          // 处理全局变量的加载器
+          {
+            loader: "sass-resources-loader",
+            options: {
+              resources: [resolve("src/css/_var.scss")],
+            },
+          },
         ],
       },
       // Ts文件的处理
