@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
-  mode: "production",
+  mode: "development",
 
   entry: {
     entry: "./src/js/index.ts",
@@ -29,7 +29,17 @@ module.exports = {
 
   module: {
     rules: [
-      { test: "/.scss$/", use: ["style-loader", "css-loader", "sass-loader"] },
+      // scss文件的处理
+      {
+        test: /.scss$/,
+        use: [
+          { loader: "style-loader" },
+          { loader: "css-loader" },
+          { loader: "postcss-loader" },
+          { loader: "sass-loader" },
+        ],
+      },
+      // Ts文件的处理
       {
         test: /\.ts$/,
         exclude: /node_modules/,
@@ -37,7 +47,17 @@ module.exports = {
           {
             loader: "babel-loader",
             options: {
-              presets: [["@babel/preset-env"]],
+              presets: [
+                [
+                  "@babel/preset-env",
+                  {
+                    targets: {
+                      chrome: "58",
+                      ie: "11",
+                    },
+                  },
+                ],
+              ],
             },
           },
           {
