@@ -1,0 +1,8 @@
+@mixin Square {
+  width: 10px;
+        height: 10px;
+        background-color: black;
+        border: 1px solid $bg-color;
+        
+        position: absolute;
+}

@@ -1,6 +1,37 @@
-
 #main{
   width: 360px;
   height: 420px;
   background-color: $bg-color ;
+
+  border-radius: 10px;
+  border:10px solid black;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  
+  #stage{
+    width: 304px;
+    height: 304px;
+    border: 2px solid black;
+
+    position: relative;
+    #snake{
+      div{
+        @include Square;
+      }
+    }
+    
+    #food{
+      @include Square;
+      left:10px
+    }
+  }
+  #score-panel{
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
 } 

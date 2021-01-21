@@ -13,6 +13,10 @@ module.exports = {
   output: {
     path: resolve("dist"),
     filename: "bundle.js",
+    environment: {
+      // 兼容IE取消webpack中箭头函数——可选
+      arrowFunction: false,
+    },
   },
 
   resolve: {
@@ -46,7 +50,10 @@ module.exports = {
           {
             loader: "sass-resources-loader",
             options: {
-              resources: [resolve("src/css/_var.scss")],
+              resources: [
+                resolve("src/css/_var.scss"),
+                resolve("src/css/_minxin.scss"),
+              ],
             },
           },
         ],
