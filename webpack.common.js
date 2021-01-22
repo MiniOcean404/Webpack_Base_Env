@@ -19,8 +19,6 @@ module.exports = {
     },
   },
 
-  plugins: [],
-
   module: {
     rules: [
       // 打包其他资源(除了html/js/css资源以外的资源)
@@ -34,10 +32,11 @@ module.exports = {
           outputPath: "media",
         },
       },
+
       // 图片文件处理
       {
         // url-loader：处理图片资源，问题：默认处理不了html中的img图片
-        test: /\.(jpg|png|gif)$/,
+        test: /\.(jpg|png|gif|bmp|ttf|eot|svg|woff|woff2)$/,
         // 需要下载 url-loader file-loader
         loader: "url-loader",
         options: {
@@ -52,6 +51,7 @@ module.exports = {
           outputPath: "imgs",
         },
       },
+
       {
         test: /\.html$/,
         // 处理html文件的img图片（负责引入img，从而能被url-loader进行处理）

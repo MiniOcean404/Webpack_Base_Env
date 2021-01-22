@@ -18,12 +18,38 @@ module.exports = merge(common, {
   devServer: {
     // 项目构建后路径
     contentBase: resolve("build"),
+    // 监视contentBase，目录下所有文件，一但更改就会重载
+    watchContentBase: "true",
+    // 忽略监视的文件
+    watchOptions: {
+      ignored: "/node_modules/",
+    },
     // 启动gzip压缩
     compress: true,
+    // 域名
+    host: "127.0.0.1",
     // 端口号
     port: 3000,
     // 自动打开浏览器
     open: true,
+    // 开启HRM功能
+    hot: false,
+    // 控制台，不显示启动服务器的日志信息
+    clientLogLevel: "none",
+    // 控制台，出了一些基本启动信息以外，其他内容都不要显示
+    quiet: true,
+    // 出错误了不要全屏提示
+    overlay: false,
+    proxy: {
+      //一旦 devServer(5000)服务器接受到/api/xxx的请求,就会把请求转发到另外一个服务器(3800)
+      "/api": {
+        target: "http://lovalhost:3000",
+        //′发送请求时,请求路径重写:将/api/xxx-->/xxx(去掉/api)
+        pathRewrite: {
+          "^/api": "",
+        },
+      },
+    },
   },
 
   plugins: [
